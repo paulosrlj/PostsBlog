@@ -1,8 +1,10 @@
 @import '../../index.scss';
 
 .input {
-    padding: 8px;
+    padding: 8px 11px;
     border-color: #777777;
     color: #CCCCCC;
     border-radius: 8px;
+    display: block;
+    outline: none;
 }

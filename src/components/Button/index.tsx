@@ -1,14 +1,15 @@
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 import style from './style.module.scss';
 
 type Props = {
-    children: ReactNode
+  children: ReactNode;
+  styles?: CSSProperties
 }
 
-function Button({ children }: Props) {
+function Button({ children, styles }: Props) {
   return (
-    <button className={style.button}>
+    <button className={style.button} style={styles}>
       {children}
     </button>
   )
