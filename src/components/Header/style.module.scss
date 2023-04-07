@@ -1,0 +1,12 @@
+@import '../../index.scss';
+
+.header {
+  width: 100%;
+  height: 80px;
+	background-color: $primaryColor;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  padding: 0 37px;
+}
