@@ -1,4 +1,4 @@
-import React from "react";
+import {useSelector} from 'react-redux'
 
 import style from "./style.module.scss";
 import Title from "../../components/Title";
@@ -6,6 +6,10 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 
 function SignUp() {
+
+  const valid = useSelector((state: any) => state.signUpInput.valid);
+  console.log(valid)
+
   return (
     <div className={style.container}>
       <div className={style.box}>
@@ -19,7 +23,7 @@ function SignUp() {
             type="text"
             styles={{ alignSelf: "stretch", marginBottom: '16px' }}
           />
-          <Button>ENTER</Button>
+          <Button disabled={!valid}>ENTER</Button>
         </div>
       </div>
     </div>

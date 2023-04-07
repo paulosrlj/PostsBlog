@@ -15,3 +15,9 @@
 .button:hover {
     background-color: $primaryColorDarker;
 }
+
+.buttonDisabled {
+    background-color: #b0b4bf;
+    cursor: not-allowed;
+    pointer-events: none;
+}
