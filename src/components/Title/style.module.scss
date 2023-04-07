@@ -1,0 +1,12 @@
+@import '../../index.scss';
+
+.title {
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}
