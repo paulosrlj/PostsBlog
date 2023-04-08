@@ -3,14 +3,13 @@ import Title from "../../Title";
 import Button, { ButtonColor } from "../../Button";
 
 type Props = {
-  text: string;
   isOpen: any;
   setModal: any;
 };
 
 import styles from "./style.module.scss";
 
-function DeleteModal({ isOpen, text, setModal }: Props) {
+function DeleteModal({ isOpen, setModal }: Props) {
   const handleModalClose = () => {
     setModal(false);
     document.body.style.overflow = "auto";

@@ -14,6 +14,7 @@ export enum ButtonColor {
   primary = "primary",
   alert = "alert",
   simple = "simple",
+  confirm = "confirm",
 }
 
 function Button({

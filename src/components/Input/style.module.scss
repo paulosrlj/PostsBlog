@@ -1,10 +1,13 @@
-@import '../../index.scss';
+@import "../../index.scss";
 
 .input {
-    padding: 8px 11px;
-    border-color: #777777;
-    color: #CCCCCC;
-    border-radius: 8px;
-    display: block;
-    outline: none;
+  padding: 8px 11px;
+  color: #cccccc;
+  border: 1px solid $strokeColor;
+  border-radius: 8px;
+
+  display: block;
+  outline: none;
+  border-collapse: separate;
+
 }

@@ -9,15 +9,16 @@ import Button from "../Button";
 import TrashIcon from "./assets/trash.svg";
 import EditIcon from "./assets/edit.svg";
 import DeleteModal from "../Modal/DeleteModal";
+import UpdateModal from "../Modal/UpdateModal";
 
 function Post() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
-   const handleModalOpen = () => {
-    setModalOpen(true);
-    document.body.style.overflow = "hidden"; // Ocultar a barra de rolagem
+  const handleModalOpen = (handleModal: (newValue: boolean) => void) => {
+    handleModal(true);
+    document.body.style.overflow = "hidden";
   };
-
 
   return (
     <>
@@ -30,9 +31,9 @@ function Post() {
               src={TrashIcon}
               className={styles.icon}
               style={{ marginRight: "24px" }}
-              onClick={handleModalOpen}
+              onClick={() => handleModalOpen(setDeleteModalOpen)}
             />
-            <img src={EditIcon} className={styles.icon} />
+            <img src={EditIcon} className={styles.icon} onClick={() => handleModalOpen(setUpdateModalOpen)} />
           </div>
         </div>
         <div>
@@ -51,12 +52,23 @@ function Post() {
         </div>
       </div>
 
-      {modalOpen && (
+      {deleteModalOpen &&
         ReactDOM.createPortal(
-          <DeleteModal text="asdasdsad" isOpen={modalOpen} setModal={setModalOpen} />,
+          <DeleteModal
+            isOpen={deleteModalOpen}
+            setModal={setDeleteModalOpen}
+          />,
           document.body
-        )
-      )}
+        )}
+
+      {updateModalOpen &&
+        ReactDOM.createPortal(
+          <UpdateModal
+            isOpen={updateModalOpen}
+            setModal={setUpdateModalOpen}
+          />,
+          document.body
+        )}
     </>
   );
 }
