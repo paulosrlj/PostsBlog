@@ -7,7 +7,7 @@ import style from "./style.module.scss";
 
 type Props = {
   placeholder: string;
-  text: string;
+  text?: string;
   type: string;
   styles?: CSSProperties;
 };

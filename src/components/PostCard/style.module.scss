@@ -1,0 +1,27 @@
+@import '../../index.scss';
+
+.postCard {
+
+  width: 95%;
+  border: 1px solid black;
+  border-radius: 16px;
+  margin-top: 24px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.inputBox {
+  /* width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: green; */
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  font-size: 16px;
+}
