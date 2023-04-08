@@ -84,7 +84,7 @@ function MainScreen() {
   }, [fetchData, isLoading]);
 
   return (
-    <div className={styles.limitedContainer}>
+    <div className={styles.limiterContainer}>
       <div className={styles.container}>
       <Header />
       <div className={styles.innerContainer}>
