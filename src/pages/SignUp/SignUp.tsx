@@ -1,14 +1,22 @@
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 
 import style from "./style.module.scss";
 import Title from "../../components/Title";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import { inputActions } from "../../actions/input";
 
 function SignUp() {
-
   const valid = useSelector((state: any) => state.signUpInput.valid);
-  console.log(valid)
+
+  const value = useSelector((state: any) => state.signUpInput.inputValue);
+
+  const dispatch = useDispatch();
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(inputActions.updateInput(e.target.value));
+    dispatch(inputActions.verifyIfIsInvalid());
+  }
 
   return (
     <div className={style.container}>
@@ -21,7 +29,9 @@ function SignUp() {
             placeholder="John Doe"
             text=""
             type="text"
-            styles={{ alignSelf: "stretch", marginBottom: '16px' }}
+            styles={{ alignSelf: "stretch", marginBottom: "16px" }}
+            value={value}
+            onChange={handleInputChange}
           />
           <Button disabled={!valid}>ENTER</Button>
         </div>

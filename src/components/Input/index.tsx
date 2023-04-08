@@ -1,7 +1,4 @@
-import { CSSProperties, ReactNode, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-
-import { inputActions } from "../../actions/input";
+import { CSSProperties } from "react";
 
 import style from "./style.module.scss";
 
@@ -10,18 +7,11 @@ type Props = {
   text?: string;
   type: string;
   styles?: CSSProperties;
+  onChange?: any;
+  value: string;
 };
 
-function Input({ placeholder, text, type, styles }: Props) {
-
-  const value = useSelector((state: any) => state.signUpInput.inputValue);
-
-  const dispatch = useDispatch();
-
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    dispatch(inputActions.updateInput(e.target.value))
-    dispatch(inputActions.verifyIfIsInvalid())
-  }
+function Input({ placeholder, type, styles, onChange, value }: Props) {
 
   return (
     <input
@@ -29,7 +19,7 @@ function Input({ placeholder, text, type, styles }: Props) {
       type={type}
       placeholder={placeholder}
       style={styles}
-      onChange={handleInputChange}
+      onChange={onChange}
       value={value}
     />
   );
