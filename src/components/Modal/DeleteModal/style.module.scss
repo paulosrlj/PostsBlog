@@ -19,8 +19,10 @@
   right: 0;
   bottom: 0;
   position: fixed;
+}
 
-
+.modal {
+  z-index: 999;
 }
 
 .overlay {
