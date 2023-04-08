@@ -5,8 +5,12 @@ import Title from "../../components/Title";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { inputActions } from "../../actions/input";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+
+  const navigate = useNavigate();
+
   const valid = useSelector((state: any) => state.signUpInput.valid);
 
   const value = useSelector((state: any) => state.signUpInput.inputValue);
@@ -16,6 +20,10 @@ function SignUp() {
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(inputActions.updateInput(e.target.value));
     dispatch(inputActions.verifyIfIsInvalid());
+  }
+
+  function handleOnClick() {
+    navigate(`/posts/${value}`);
   }
 
   return (
@@ -33,7 +41,7 @@ function SignUp() {
             value={value}
             onChange={handleInputChange}
           />
-          <Button disabled={!valid}>ENTER</Button>
+          <Button onClick={handleOnClick} disabled={!valid}>ENTER</Button>
         </div>
       </div>
     </div>
