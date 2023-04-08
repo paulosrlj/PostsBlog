@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,13 +8,17 @@ import Title from "../Title";
 import Input from "../Input";
 import Button from "../Button";
 import { inputActions } from "../../actions/postCard";
+import { toast } from "react-toastify";
+import { fetchPostsActions } from "../../actions/fetchPosts";
 
 function PostCard() {
+  const dispatch = useDispatch();
+
   const titleValue = useSelector((state: any) => state.postCard.titleValue);
   const contentValue = useSelector((state: any) => state.postCard.contentValue);
   const valid = useSelector((state: any) => state.postCard.valid);
-
-  const dispatch = useDispatch();
+  const firstPageUrl = useSelector((state: any) => state.fetchPosts.firstPageUrl);
+  const loggedUser = useSelector((state: any) => state.login.loggedUser);
 
   function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(inputActions.updateTitleValue(e.target.value));
@@ -23,6 +28,35 @@ function PostCard() {
   function handleContentChange(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(inputActions.updateContentValue(e.target.value));
     dispatch(inputActions.verifyIfIsInvalid());
+  }
+
+  async function fetchData() {
+    if (firstPageUrl == null) return;
+
+    const response = await axios.get(firstPageUrl);
+
+    const data = await response.data;
+
+    dispatch(fetchPostsActions.getInitialData(data.results));
+    dispatch(fetchPostsActions.updateUrl(data.next));
+  }
+
+
+  async function handlePostCreation() {
+    const postObj = {
+      username: loggedUser,
+      title: titleValue,
+      content: contentValue,
+    };
+    try {
+      await axios.post("https://dev.codeleap.co.uk/careers/", postObj);
+      console.log("sucesso");
+      await fetchData();
+      toast.success('Success!');
+    } catch (error) {
+      console.error(error);
+      toast.error('Unespected error!');
+    }
   }
 
   return (
@@ -51,7 +85,13 @@ function PostCard() {
         />
       </div>
 
-      <Button disabled={!valid} styles={{ alignSelf: "flex-end" }}>Create</Button>
+      <Button
+        disabled={!valid}
+        styles={{ alignSelf: "flex-end" }}
+        onClick={handlePostCreation}
+      >
+        Create
+      </Button>
     </div>
   );
 }

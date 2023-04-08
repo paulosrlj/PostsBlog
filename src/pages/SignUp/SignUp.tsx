@@ -6,6 +6,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { inputActions } from "../../actions/input";
 import { useNavigate } from "react-router-dom";
+import { loginActions } from "../../actions/login";
 
 function SignUp() {
 
@@ -23,6 +24,7 @@ function SignUp() {
   }
 
   function handleOnClick() {
+    dispatch(loginActions.setUser(value));
     navigate(`/posts/${value}`);
   }
 
