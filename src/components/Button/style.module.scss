@@ -1,23 +1,47 @@
-@import '../../index.scss';
+@import "../../index.scss";
 
-.button {
-    background-color: $primaryColor;
-    color: white;
-    border-radius: 8px;
-    border: none;
-    padding: 10px 32px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in;
+.primary {
+  color: white;
+  background-color: $primaryColor;
 }
 
-.button:hover {
-    background-color: $primaryColorDarker;
+.alert {
+  color: white;
+  background-color: $alertRedColor;
+}
+
+.simple {
+  background-color: $whiteSimpleColor;
+  color: black;
+}
+
+.button {
+  border-radius: 8px;
+  border: none;
+  padding: 10px 33px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  border: 1px solid $strokeColor;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.primary:hover {
+  background-color: $primaryColorDarker;
+}
+
+.alert:hover {
+  background-color: #e73535;
+}
+
+.simple:hover {
+  background-color: #d7d7d7;
 }
 
 .buttonDisabled {
-    background-color: #b0b4bf;
-    cursor: not-allowed;
-    pointer-events: none;
+  background-color: #b0b4bf;
+  cursor: not-allowed;
+  pointer-events: none;
 }

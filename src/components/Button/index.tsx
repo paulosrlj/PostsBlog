@@ -6,15 +6,31 @@ type Props = {
   children: ReactNode;
   disabled?: boolean;
   styles?: CSSProperties;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  buttonColor?: ButtonColor;
 };
 
-function Button({ children, styles, disabled = false }: Props) {
-  console.log(disabled);
+export enum ButtonColor {
+  primary = "primary",
+  alert = "alert",
+  simple = "simple",
+}
+
+function Button({
+  children,
+  styles,
+  onClick,
+  disabled = false,
+  buttonColor = ButtonColor.primary,
+}: Props) {
   return (
     <button
-      className={`${style.button} ${disabled ? style.buttonDisabled : ""}`}
+      className={`${style.button} ${style[buttonColor]} ${
+        disabled ? style.buttonDisabled : ""
+      }`}
       style={styles}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
